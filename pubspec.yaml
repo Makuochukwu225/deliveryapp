@@ -1,0 +1,43 @@
+name: deliveryapp
+description: A new Flutter project.
+
+publish_to: "none"
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.0.6 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.2
+  google_fonts: ^6.1.0
+  svg_flutter: ^0.0.1
+  lottie: ^2.6.0
+  smooth_page_indicator: ^1.1.0
+  carousel_slider: ^4.2.1
+  sliding_up_panel2: ^3.3.0+1
+  flutter_map: ^6.0.1
+  latlong2: ^0.9.0
+  # go_router: ^12.1.1
+  flutter_screenutil: ^5.9.0
+  flutter_riverpod: ^2.4.9
+  flutter_animate: ^4.3.0
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^2.0.0
+
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+    - assets/icons/
+    - assets/animations/
