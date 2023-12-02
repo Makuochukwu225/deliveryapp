@@ -24,9 +24,9 @@ class LoginScreen extends StatelessWidget {
                 Flexible(child: verticalGap(135)),
                 Image.asset("assets/images/onboading_img.png"),
                 verticalGap(97),
-                const AppText(
+                AppText(
                   data: "Welcome to E-Bikes",
-                  color: Color(0xFF041C2E),
+                  color: AppColors.black4,
                   fontSize: 24,
                   fontWeight: FontWeight.w600,
                 ),
@@ -34,8 +34,8 @@ class LoginScreen extends StatelessWidget {
                 const AppText(
                   textAlign: TextAlign.center,
                   data:
-                      " Buying Electric bikes just got a lot easier, Try us today. ",
-                  color: Color(0xFF95823C),
+                      " Buying Electric bikes just got a lot easier, \nTry us today. ",
+                  color: AppColors.yellow1,
                   fontSize: 14,
                   fontWeight: FontWeight.w400,
                 ),
@@ -53,16 +53,10 @@ class LoginScreen extends StatelessWidget {
                 verticalGap(48),
                 AppWidgetButton(
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          PageRouteBuilder(
-                            pageBuilder:
-                                (context, animation, secondaryAnimation) =>
-                                    FadeTransition(
-                              opacity: animation,
-                              child: const DashboardScreen(),
-                            ),
-                          ));
+                      AppRoute.push(
+                        context: context,
+                        child: const DashboardScreen(),
+                      );
                     },
                     data: Stack(
                       children: [
@@ -79,6 +73,7 @@ class LoginScreen extends StatelessWidget {
                           top: 0,
                           bottom: 0,
                           child: CircleAvatar(
+                            radius: 16.r,
                             backgroundColor: AppColors.white,
                             child: Image.asset('assets/icons/icon-google.png'),
                           ),
@@ -90,7 +85,7 @@ class LoginScreen extends StatelessWidget {
                   TextSpan(
                       text: "Don’t have any account?",
                       style: TextStyle(
-                        color: Color(0xFF95823C),
+                        color: AppColors.yellow1,
                         fontSize: 14,
                         fontFamily: 'Inter',
                         fontWeight: FontWeight.w500,

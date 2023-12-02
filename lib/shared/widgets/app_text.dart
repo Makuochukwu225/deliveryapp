@@ -28,6 +28,7 @@ class AppText extends StatelessWidget {
           color: color,
           fontSize: fontSize!.sp,
           height: height,
+          // fontStyle: FontStyle.normal,
           fontFamily: "SfpProDisplay",
           fontWeight: fontWeight,
         ),

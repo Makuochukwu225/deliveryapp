@@ -217,7 +217,7 @@ class _TrackDetailsScreenState extends State<TrackDetailsScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     AppText(
-                      data: "Estimate arrives",
+                      data: "Estimate arrives in",
                       color: Color(0xff7A809D),
                       fontSize: 14,
                     ),
@@ -291,7 +291,7 @@ class _TrackDetailsScreenState extends State<TrackDetailsScreen> {
                   separatorBuilder: (context, index) => Align(
                         alignment: Alignment.topLeft,
                         child: SizedBox(
-                          width: 50,
+                          width: 55,
                           child: Center(
                             child: Container(
                               color: AppColors.lineColor,
@@ -313,43 +313,46 @@ class _TrackDetailsScreenState extends State<TrackDetailsScreen> {
   }
 
   Widget buildOrderItem(OrderModel order) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        CircleAvatar(
-          radius: 28,
-          backgroundColor: order.iconColor,
-          child: Image.asset(order.icon!),
-        ),
-        horizontalGap(16),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            AppText(
-              data: order.status!,
-              fontSize: 14.sp,
-              fontWeight: FontWeight.w600,
-              color: AppColors.blueDark,
-            ),
-            AppText(
-              data: order.location!,
-              fontSize: 14.sp,
-              fontWeight: FontWeight.w600,
-              color: AppColors.lightGrey,
-            ),
-          ],
-        ),
-        const Spacer(),
-        Center(
-          child: AppText(
-              data: order.time!,
-              fontSize: 12.sp,
-              fontWeight: FontWeight.w400,
-              color: AppColors.lightGrey),
-        ),
-      ],
+    return SizedBox(
+      height: 56,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          CircleAvatar(
+            radius: 28,
+            backgroundColor: order.iconColor,
+            child: Image.asset(order.icon!),
+          ),
+          horizontalGap(16),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              AppText(
+                data: order.status!,
+                fontSize: 14.sp,
+                fontWeight: FontWeight.w600,
+                color: AppColors.blueDark,
+              ),
+              AppText(
+                data: order.location!,
+                fontSize: 14.sp,
+                fontWeight: FontWeight.w600,
+                color: AppColors.lightGrey,
+              ),
+            ],
+          ),
+          const Spacer(),
+          Center(
+            child: AppText(
+                data: order.time!,
+                fontSize: 12.sp,
+                fontWeight: FontWeight.w400,
+                color: AppColors.lightGrey),
+          ),
+        ],
+      ),
     );
   }
 

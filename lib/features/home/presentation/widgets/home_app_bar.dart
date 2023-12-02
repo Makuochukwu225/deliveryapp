@@ -5,7 +5,7 @@ class HomeAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 24, right: 24, top: 44),
+      padding: const EdgeInsets.only(left: 24, right: 24, top: 24),
       child: Column(
         children: [
           Row(

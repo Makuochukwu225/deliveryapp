@@ -20,18 +20,12 @@ class _HomeScreenState extends State<HomeScreen> {
           // mainAxisAlignment: MainAxisAlignment.end,
           children: [
             const HomeAppBar(),
-            Expanded(
-              child: Column(
-                children: [
-                  Expanded(child: verticalGap(40)),
-                  buildCarouselWidget(),
-                  Expanded(child: verticalGap(25)),
-                  buildOrderWidget(),
-                  Expanded(child: verticalGap(46)),
-                  buildBikerWidget(),
-                ],
-              ),
-            ),
+            Flexible(child: verticalGap(40)),
+            buildCarouselWidget(),
+            Flexible(child: verticalGap(25)),
+            buildOrderWidget(),
+            Flexible(child: verticalGap(46)),
+            buildBikerWidget(),
           ],
         ),
       ),
@@ -122,7 +116,7 @@ class _HomeScreenState extends State<HomeScreen> {
       children: [
         Expanded(
           child: SizedBox(
-            height: 130,
+            height: 120.h,
             // width: 100,
             child: Lottie.asset(
               "assets/animations/biker.json",
