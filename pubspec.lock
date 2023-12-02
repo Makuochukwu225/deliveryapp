@@ -89,6 +89,14 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.0.6"
+  easy_stepper:
+    dependency: "direct main"
+    description:
+      name: easy_stepper
+      sha256: d25a7823b6f473b33b012c47d12e54a0a6538f10441da578269d0381cba5def2
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.8.3"
   fake_async:
     dependency: transitive
     description:

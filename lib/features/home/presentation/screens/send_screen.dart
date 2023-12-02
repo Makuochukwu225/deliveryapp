@@ -1,7 +1,7 @@
 import '../../../../export.dart';
 
-class Bookmark extends StatelessWidget {
-  const Bookmark({Key? key}) : super(key: key);
+class SendScreen extends StatelessWidget {
+  const SendScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return const Scaffold(

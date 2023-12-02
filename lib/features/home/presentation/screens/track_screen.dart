@@ -1,44 +1,13 @@
-import 'package:deliveryapp/features/home/home.dart';
-import 'package:deliveryapp/features/home/presentation/screens/track_details.dart';
-import 'package:deliveryapp/shared/widgets/app_text.dart';
-import 'package:deliveryapp/shared/widgets/app_widget_button.dart';
-import 'package:deliveryapp/shared/widgets/gap.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:svg_flutter/svg_flutter.dart';
+import '../../../../export.dart';
 
-import '../../../../shared/theme/app_colors.dart';
-
-class Track extends StatefulWidget {
-  const Track({Key? key}) : super(key: key);
+class TrackScreen extends StatefulWidget {
+  const TrackScreen({Key? key}) : super(key: key);
 
   @override
-  State<Track> createState() => _TrackState();
+  State<TrackScreen> createState() => _TrackScreenState();
 }
 
-class _TrackState extends State<Track> {
-  final List<String> imgList = [
-    'assets/images/bicycle.png',
-    'assets/images/bicycle.png',
-    'assets/images/bicycle.png',
-    'assets/images/bicycle.png',
-    'assets/images/bicycle.png',
-    'assets/images/bicycle.png',
-  ];
-  final List<String> historyImage = [
-    'assets/icons/box.png',
-    'assets/icons/lorry.png',
-  ];
-
-  final List<String> historyTitle = [
-    'SCP9374826473',
-    'SCP6653728497',
-  ];
-  final List<String> historyProgress = [
-    'In the process',
-    'In delivery',
-  ];
-
+class _TrackScreenState extends State<TrackScreen> {
   int index = 0;
 
   @override
@@ -59,49 +28,60 @@ class _TrackState extends State<Track> {
   }
 
   Widget buildTransactionHistory() {
-    return Column(
-      children: [
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 24),
-          child: Align(
-            alignment: Alignment.centerLeft,
-            child: AppText(
-              data: "Tracking history",
-              color: AppColors.blueDark1,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-        ),
-        ListView.separated(
-            padding: const EdgeInsets.symmetric(horizontal: 8),
-            shrinkWrap: true,
-            itemBuilder: (context, index) => ListTile(
-                  title: Text(historyTitle[index]),
-                  titleTextStyle: TextStyle(
-                    fontSize: 14.sp,
-                    fontWeight: FontWeight.w500,
-                    color: AppColors.blueDark,
+    return Consumer(
+      builder: (context, ref, child) {
+        AsyncValue<List<OrderModel>> orderHistoryListAsync =
+            ref.watch(orderList1Provider);
+        return orderHistoryListAsync.when(
+            data: (data) {
+              return Column(
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 24),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: AppText(
+                        data: "Tracking history",
+                        color: AppColors.blueDark1,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
                   ),
-                  subtitleTextStyle: TextStyle(
-                    fontSize: 14.sp,
-                    fontWeight: FontWeight.w400,
-                    color: AppColors.lightGrey,
-                  ),
-                  trailing: const Icon(
-                    Icons.arrow_back_ios,
-                    textDirection: TextDirection.rtl,
-                    size: 15,
-                  ),
-                  leading: CircleAvatar(
-                    radius: 28,
-                    backgroundColor: AppColors.blueLight,
-                    child: Image.asset(historyImage[index]),
-                  ),
-                  subtitle: Text(historyProgress[index]),
-                ),
-            separatorBuilder: (context, index) => verticalGap(),
-            itemCount: historyImage.length)
-      ],
+                  ListView.separated(
+                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      shrinkWrap: true,
+                      itemBuilder: (context, index) => ListTile(
+                            title: Text(data[index].trackingId!),
+                            titleTextStyle: TextStyle(
+                              fontSize: 14.sp,
+                              fontWeight: FontWeight.w500,
+                              color: AppColors.blueDark,
+                            ),
+                            subtitleTextStyle: TextStyle(
+                              fontSize: 14.sp,
+                              fontWeight: FontWeight.w400,
+                              color: AppColors.lightGrey,
+                            ),
+                            trailing: const Icon(
+                              Icons.arrow_back_ios,
+                              textDirection: TextDirection.rtl,
+                              size: 15,
+                            ),
+                            leading: CircleAvatar(
+                              radius: 28,
+                              backgroundColor: AppColors.blueLight,
+                              child: Image.asset(data[index].icon!),
+                            ),
+                            subtitle: Text(data[index].status!),
+                          ),
+                      separatorBuilder: (context, index) => verticalGap(),
+                      itemCount: data.length)
+                ],
+              ).animate().slideY(begin: 1, end: 0);
+            },
+            error: (error, stackTrace) => AppError(data: error.toString()),
+            loading: () => const AppProgress());
+      },
     );
   }
 
@@ -180,24 +160,21 @@ class _TrackState extends State<Track> {
                                   (context, animation, secondaryAnimation) =>
                                       FadeTransition(
                                 opacity: animation,
-                                child: const TrackDetails(),
+                                child: const TrackDetailsScreen(),
                               ),
                             ));
                       },
                       data: Padding(
                         padding: EdgeInsets.symmetric(horizontal: 22.w),
-                        child: const Row(
+                        child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            AppText(
+                            const AppText(
                               data: "Track Now",
                               color: AppColors.white,
                               fontSize: 14,
                             ),
-                            Icon(
-                              Icons.arrow_forward_outlined,
-                              color: AppColors.white,
-                            )
+                            SvgPicture.asset('assets/icons/arrow.svg'),
                           ],
                         ),
                       )),

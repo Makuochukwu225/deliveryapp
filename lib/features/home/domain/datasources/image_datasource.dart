@@ -3,7 +3,7 @@ import '../../../../export.dart';
 class ImageDataSource {
   Future<List<ImageModel>> fetchImageList() async {
     // Simulated network call
-    await Future.delayed(const Duration(seconds: 15));
+    await Future.delayed(AppConfigs.kSimulateApiDuration);
 
     // Simulated response data
     final List<ImageModel> imgList = [

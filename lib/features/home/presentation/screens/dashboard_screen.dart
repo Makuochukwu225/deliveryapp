@@ -1,6 +1,5 @@
 import '../../../../export.dart';
 
-
 class DashboardScreen extends ConsumerWidget {
   const DashboardScreen({Key? key}) : super(key: key);
   @override
@@ -8,11 +7,11 @@ class DashboardScreen extends ConsumerWidget {
     final selectedIndex = ref.watch(selectedNavItemProvider);
 
     const pages = [
-      Home(),
-      Bookmark(),
-      Send(),
+      HomeScreen(),
+      BookmarkScreen(),
+      SendScreen(),
       Settings(),
-      Track(),
+      TrackScreen(),
     ];
 
     Future<bool> onWillPop() async {

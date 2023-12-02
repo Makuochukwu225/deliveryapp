@@ -1,23 +1,14 @@
 import '../../../../export.dart';
 
-
-class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
-  State<Home> createState() => _HomeState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeState extends State<Home> {
+class _HomeScreenState extends State<HomeScreen> {
   final controller = PageController(viewportFraction: 0.8, keepPage: true);
-  final List<String> imgList = [
-    'assets/images/bicycle.png',
-    'assets/images/bicycle.png',
-    'assets/images/bicycle.png',
-    'assets/images/bicycle.png',
-    'assets/images/bicycle.png',
-    'assets/images/bicycle.png',
-  ];
 
   int index = 0;
 
@@ -56,7 +47,7 @@ class _HomeState extends State<Home> {
       child: Consumer(
         builder: (context, ref, child) {
           AsyncValue<List<ImageModel>> imgListAsync =
-              ref.watch(fakeImageListProvider);
+              ref.watch(imageListProvider);
 
           return imgListAsync.when(
             data: (imgList) {
@@ -75,7 +66,8 @@ class _HomeState extends State<Home> {
                       viewportFraction: 0.7,
                       padEnds: false,
                       disableCenter: true,
-                      enableInfiniteScroll: false,
+                      enableInfiniteScroll: true,
+                      autoPlay: true,
                     ),
                     itemBuilder: (BuildContext context, int i, int realIndex) {
                       double opacity = i == index ? 1.0 : 0.3;
@@ -114,10 +106,10 @@ class _HomeState extends State<Home> {
                     onDotClicked: (index) {}, activeIndex: index,
                   )
                 ],
-              );
+              ).animate().slideX(begin: 1, end: 0);
             },
-            error: (error, stackTrace) => const Text("Error loading"),
-            loading: () => const Center(child: CircularProgressIndicator()),
+            error: (error, stackTrace) => AppError(data: error.toString()),
+            loading: () => const AppProgress(),
           );
         },
       ),
@@ -186,10 +178,7 @@ class _HomeState extends State<Home> {
                             fontSize: 14,
                           ),
                           horizontalGap(21),
-                          const Icon(
-                            Icons.arrow_forward_outlined,
-                            color: AppColors.white,
-                          )
+                          SvgPicture.asset('assets/icons/arrow.svg'),
                         ],
                       ));
                 },

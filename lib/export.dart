@@ -19,3 +19,4 @@ export 'core/core.dart';
 export 'features/features.dart';
 export 'routes/routes.dart';
 export 'shared/shared.dart';
+export 'package:easy_stepper/easy_stepper.dart';

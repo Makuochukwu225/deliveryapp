@@ -39,6 +39,17 @@ class LoginScreen extends StatelessWidget {
                   fontSize: 14,
                   fontWeight: FontWeight.w400,
                 ),
+                verticalGap(24),
+                AnimatedSmoothIndicator(
+                  count: 3,
+                  effect: const WormEffect(
+                    dotHeight: 6,
+                    dotWidth: 6,
+                    dotColor: Color(0xffe5f0fc),
+                    activeDotColor: Color(0xff02131E),
+                  ), // your preferred effect
+                  onDotClicked: (index) {}, activeIndex: 0,
+                ),
                 verticalGap(48),
                 AppWidgetButton(
                     onPressed: () {
@@ -95,7 +106,7 @@ class LoginScreen extends StatelessWidget {
                         letterSpacing: 0.50,
                       )),
                 ])),
-                verticalGap(48),
+                verticalGap(28),
               ],
             ),
           ),

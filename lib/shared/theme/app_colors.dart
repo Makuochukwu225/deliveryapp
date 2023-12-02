@@ -9,6 +9,7 @@ class AppColors {
   /// App secondary color
   static const Color error = Color(0xffFC698C);
 
+  static const Color blue = Color(0xff092C4C);
   static const Color blueLight = Color(0xffF1F6FB);
   static const Color blueDark = Color(0xff1E3354);
   static const Color blueDark1 = Color(0xff2E3E5C);
@@ -22,8 +23,11 @@ class AppColors {
   /// App white color
   static const Color white = Color(0xffffffff);
 
+  /// App line color
+  static const Color lineColor = Color(0xffDFE6ED);
+
   /// Light grey color
-  static const Color lightGrey = Color(0xff7AB09D);
+  static const Color lightGrey = Color(0xff7A809D);
 
   /// Extra Light grey color
   static const Color extraLightGrey = Color(0xffE1E8ED);
